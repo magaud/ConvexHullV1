@@ -1,4 +1,4 @@
-# Formalization of the (Structurally Recursive) Incremental Algorithm for Convex Hull 
+# Formalization of a (Structurally Recursive) Incremental Algorithm for Convex Hull in Coq
 
 Christophe Brun, Jean-François Dufourd, Nicolas Magaud
 
