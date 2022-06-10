@@ -14,21 +14,21 @@ Require Import ZArith.
 (* ========================== *)
 
 Lemma my_planar_genus : forall (m:fmap),
- planar m <-> genus m = 0.
+ planar m <-> (genus m = 0)%Z.
 Proof.
 intro m; split; unfold planar; trivial.
 Qed.
 
 Lemma my_genus_ec : forall (m:fmap),
- genus m = 0 <-> ec m / 2 = nc m.
+ (genus m = 0)%Z <-> (ec m / 2 = nc m)%Z.
 Proof.
-intro m; split; unfold genus; omega.
+intro m; split; unfold genus; lia.
 Qed.
 
 Lemma my_planar_ec : forall (m:fmap),
- planar m <-> ec m / 2 = nc m.
+ planar m <-> (ec m / 2 = nc m)%Z.
 Proof.
-intro m; split; unfold planar, genus; omega.
+intro m; split; unfold planar, genus; lia.
 Qed.
 
 (* ========================== *)
@@ -47,32 +47,32 @@ apply planar_plf; try assumption.
 Qed.
 
 Lemma my_plf_genus : forall (m:fmap),
-  inv_hmap m -> plf m -> genus m = 0.
+  inv_hmap m -> plf m -> (genus m = 0)%Z.
 Proof.
 apply plf_planar.
 Qed.
 
 Lemma my_genus_plf : forall (m:fmap),
-  inv_hmap m -> genus m = 0 -> plf m.
+  inv_hmap m -> (genus m = 0)%Z -> plf m.
 Proof.
 intros m Hmap H.
 apply planar_plf; try assumption.
 Qed.
 
 Lemma my_plf_ec : forall (m:fmap),
-  inv_hmap m -> plf m -> ec m / 2 = nc m.
+  inv_hmap m -> plf m -> (ec m / 2 = nc m)%Z.
 Proof.
 intros m Hmap H.
 generalize (plf_planar m Hmap H).
-unfold planar, genus; omega.
+unfold planar, genus; lia.
 Qed.
 
 Lemma my_ec_plf : forall (m:fmap),
-  inv_hmap m -> ec m / 2 = nc m -> plf m.
+  inv_hmap m -> (ec m / 2 = nc m)%Z -> plf m.
 Proof.
 intros m Hmap H.
 apply planar_plf; try assumption.
-unfold genus; omega.
+unfold genus; lia.
 Qed.
 
 (* ========================== *)

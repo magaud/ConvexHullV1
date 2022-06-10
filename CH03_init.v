@@ -180,10 +180,10 @@ induction m.
    intros; subst x; tauto.
    intros; apply IHm; assumption.
   elim Hexd; clear Hexd.
-   intros; subst x; omega.
+   intros; subst x; lia.
    intros Hexd Hmax.
    assert (x <= max_dart m);
-   [apply IHm; assumption | omega].
+   [apply IHm; assumption | lia].
  (* Cas 3 : m = L *)
  intros x Hexd.
  simpl in *.
@@ -980,8 +980,8 @@ induction m.
  (* Cas 1 : m = V *)
  simpl in *.
  elim (le_lt_dec x 0).
-  intro H; omega.
-  intro H; omega.
+  intro H; lia.
+  intro H; lia.
  (* Cas 2 : m = I *)
  simpl in *.
  elim blue_dart_dec.
@@ -1215,7 +1215,7 @@ intros m2 max x Hexd1 Hexd2 Hneq.
  (* Cas 2 : m = I *)
  simpl in *.
  apply (IHm (CHID m2 m2 d t p max) (max+1) x). tauto.
- apply not_exd_CHID. assumption. apply neq_sym; tauto. omega. omega.
+ apply not_exd_CHID. assumption. apply neq_sym; tauto. lia. lia.
  (* Cas 3 : m = L *)
  simpl in *; tauto.
 Qed.
@@ -1234,8 +1234,8 @@ intros m2 max x Hexd1 Hexd2 Hmax.
  intro H1; left; apply sym_eq; assumption.
  intro H1; right.
  assert (H2 : ~ exd (CHID m2 m2 d t p max) x).
- apply not_exd_CHID; [assumption|assumption|omega].
- assert (H3 : x < max+1). omega.
+ apply not_exd_CHID; [assumption|assumption|lia].
+ assert (H3 : x < max+1). lia.
  apply (IHm (CHID m2 m2 d t p max) (max+1) x Hexd1 H2 H3).
  (* Cas 3 : m = L *)
  simpl in *; tauto.
@@ -1252,10 +1252,10 @@ intros m2 max x Hexd1 Hexd2 Hmax.
  (* Cas 2 : m = I *)
  simpl in *.
  rewritenotorandnot Hexd2 Hneq Hexd2.
- assert (H : x < max+1). omega.
+ assert (H : x < max+1). lia.
  generalize (IHm (CHID m2 m2 d t p max) (max+1) x Hexd1 Hexd2 H);
  clear H; intro H.
- apply (exd_CHID_neq_x_neq_max_exd_m m2 m2 d t p max x H (neq_sym d x Hneq)); omega.
+ apply (exd_CHID_neq_x_neq_max_exd_m m2 m2 d t p max x H (neq_sym d x Hneq)); lia.
  (* Cas 3 : m = L *)
  simpl in *; tauto.
 Qed.
@@ -1271,13 +1271,13 @@ intros m2 max x Hexd1 Hexd2 Hneq.
  (* Cas 2 : m = I *)
  simpl in *.
  elim (eq_dart_dec max x); intro H1.
-  subst max; omega.
+  subst max; lia.
   cut (max+1 <= x).
-  intro H2; omega.
+  intro H2; lia.
   apply (IHm (CHID m2 m2 d t p max) (max+1) x).
   assumption.
   tauto.
-  apply not_exd_CHID. assumption. apply neq_sym; tauto. omega.
+  apply not_exd_CHID. assumption. apply neq_sym; tauto. lia.
  (* Cas 3 : m = L *)
  simpl in *; tauto.
 Qed.
@@ -1285,10 +1285,6 @@ Qed.
 (* ========================= *)
 (* =======  #######  ======= *)
 (* ========================= *)
-
-Ltac omegabis := abstract omega.
-
-Ltac intuitionbis := solve [intuition].
 
 Ltac firstif_aux x :=
  match x with

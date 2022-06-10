@@ -654,7 +654,7 @@ induction i.
  assert (H2 : blue_dart m (Iter (cF_1 m) i d)).
   apply blue_cF_1_blue; try assumption.
  assert (H3 : visible m (Iter (cF_1 m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold left_dart in H1; simpl in *; clear H IHi.
  assert (H0 : ~ invisible m (A_1 m one (Iter (cF_1 m) i d)) p).
   intuition.
@@ -682,12 +682,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply blue_dart_not_left_dart_until_i_visible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -714,7 +714,7 @@ induction i.
  assert (H2 : red_dart m (A m zero (Iter (cF m) i d))).
   apply blue_A_red; try assumption.
  assert (H3 : visible m (Iter (cF m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold right_dart in H1; simpl in *; clear H IHi.
  apply visible_A_visible in H3; try assumption.
  assert (H0 : ~ invisible m (A m one (A m zero (Iter (cF m) i d))) p).
@@ -736,12 +736,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply blue_dart_not_right_dart_until_i_visible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -768,7 +768,7 @@ induction i.
  assert (H2 : blue_dart m (A_1 m zero (Iter (cF m) i d))).
   apply red_A_1_blue; try assumption.
  assert (H3 : visible m (Iter (cF m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold left_dart in H1; simpl in *; clear H IHi.
  apply visible_A_1_visible in H3; try assumption.
  assert (H0 : ~ invisible m (A_1 m one (A_1 m zero (Iter (cF m) i d))) p).
@@ -792,12 +792,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply red_dart_not_left_dart_until_i_visible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -819,7 +819,7 @@ induction i.
  assert (H2 : red_dart m (Iter (cF_1 m) i d)).
   apply red_cF_1_red; try assumption.
  assert (H3 : visible m (Iter (cF_1 m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold right_dart in H1; simpl in *; clear H IHi.
  assert (H0 : ~ invisible m (A m one (Iter (cF_1 m) i d)) p).
   intuition.
@@ -849,12 +849,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply red_dart_not_right_dart_until_i_visible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -883,7 +883,7 @@ induction i.
  assert (H2 : blue_dart m (Iter (cF m) (S i) d)).
   apply blue_cF_blue; try assumption.
  assert (H3 : invisible m (Iter (cF m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold left_dart in H1; simpl in *; clear H IHi.
  assert (H4 : cF m (Iter (cF m) i d) = A m one (A m zero (Iter (cF m) i d))).
   generalize (inv_poly_cF m (Iter (cF m) i d) Hmap Hpoly H02).
@@ -911,12 +911,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply blue_dart_not_left_dart_until_i_invisible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -944,7 +944,7 @@ induction i.
   apply blue_A_red; try assumption.
   apply blue_cF_1_blue; try assumption.
  assert (H3 : invisible m (Iter (cF_1 m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold right_dart in H1; simpl in *; clear H IHi.
  assert (H4 : cF_1 m (Iter (cF_1 m) i d) = A_1 m zero (A_1 m one (Iter (cF_1 m) i d))).
   generalize (inv_poly_cF_1 m (Iter (cF_1 m) i d) Hmap Hpoly H02).
@@ -979,12 +979,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply blue_dart_not_right_dart_until_i_invisible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -1012,7 +1012,7 @@ induction i.
   apply red_A_1_blue; try assumption.
   apply red_cF_1_red; try assumption.
  assert (H3 : invisible m (Iter (cF_1 m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold left_dart in H1; simpl in *; clear H IHi.
  assert (H4 : cF_1 m (Iter (cF_1 m) i d) = A m zero (A m one (Iter (cF_1 m) i d))).
   generalize (inv_poly_cF_1 m (Iter (cF_1 m) i d) Hmap Hpoly H02).
@@ -1048,12 +1048,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply red_dart_not_left_dart_until_i_invisible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -1080,7 +1080,7 @@ induction i.
  assert (H2 : red_dart m (Iter (cF m) (S i) d)).
   apply red_cF_red; try assumption.
  assert (H3 : invisible m (Iter (cF m) i d) p).
-  apply IHi; intros j Hle; apply H; omega.
+  apply IHi; intros j Hle; apply H; lia.
  unfold right_dart in H1; simpl in *; clear H IHi.
  assert (H4 : cF m (Iter (cF m) i d) = A_1 m one (A_1 m zero (Iter (cF m) i d))).
   generalize (inv_poly_cF m (Iter (cF m) i d) Hmap Hpoly H02).
@@ -1110,12 +1110,12 @@ Proof.
 intros m d p i Hmap Hpoly Hexd Hred Hvis H1 j H2.
 induction i.
  (* Cas 1 = 0 *)
- assert (H : j=0); [omega|idtac].
+ assert (H : j=0); [lia|idtac].
  subst j; simpl in *; assumption.
  (* Cas 2 = S i *)
  elim (eq_nat_dec (S i) j); intro Heq; try subst j.
   apply red_dart_not_right_dart_until_i_invisible_i; try assumption.
-  apply IHi. intros k Hk; apply H1; omega. omega.
+  apply IHi. intros k Hk; apply H1; lia. lia.
 Qed.
 
 (* ========================== *)
@@ -1131,21 +1131,21 @@ Lemma exist_forall_i :
 Proof.
 intros m p d P k Hdec.
 induction k.
- right; intro i; left; omega.
+ right; intro i; left; lia.
  elim IHk; clear IHk.
   intro IHk; left.
    elim IHk; clear IHk; intros x IHk.
-   exists x; split; [omega|tauto].
+   exists x; split; [lia|tauto].
   intro IHk.
   generalize (Hdec k); clear Hdec.
   intro H; elim H; clear H.
    intro H; left.
-   exists k; split; [omega|tauto].
+   exists k; split; [lia|tauto].
    intro H; right; intro i.
    elim (eq_nat_dec i k); intro Heq.
     rewrite Heq in *; tauto.
     generalize (IHk i); intro H0; elim H0.
-     intro H1; left; omega.
+     intro H1; left; lia.
      intro H1; right; assumption.
 Qed.
 
@@ -1177,7 +1177,7 @@ assert (H01 : Iter (cF m) ((MF.Iter_upb m d)-1) d = cF_1 m d).
  rewrite <- MF.Iter_f_f_1; try assumption.
  rewrite MF.Iter_upb_period; try assumption.
  simpl in *; tauto.
- assert (0 < (MF.Iter_upb m d)); [idtac|omega].
+ assert (0 < (MF.Iter_upb m d)); [idtac|lia].
   apply MF.upb_pos; tauto.
 assert (H02 : cF_1 m d = A_1 m zero (A_1 m one d)).
  generalize (inv_poly_cF_1 m d Hmap Hpoly Hexd).
@@ -1188,7 +1188,7 @@ apply invisible_not_visible in H2.
 cut (visible m (A_1 m zero (A_1 m one d)) p); [contradiction|idtac].
 apply H0; intros j Hj; generalize (H j); clear H H0.
 intro H; elim H; clear H; intro H; try assumption.
-assert (0 < (MF.Iter_upb m d)); [idtac|omega].
+assert (0 < (MF.Iter_upb m d)); [idtac|lia].
  apply MF.upb_pos; tauto.
 apply pred_exd_A_1; try assumption.
 unfold blue_dart in H1; tauto.
@@ -1223,7 +1223,7 @@ assert (H01 : Iter (cF m) ((MF.Iter_upb m d)-1) d = cF_1 m d).
  rewrite <- MF.Iter_f_f_1; try assumption.
  rewrite MF.Iter_upb_period; try assumption.
  simpl in *; tauto.
- assert (0 < (MF.Iter_upb m d)); [idtac|omega].
+ assert (0 < (MF.Iter_upb m d)); [idtac|lia].
   apply MF.upb_pos; tauto.
 assert (H02 : cF_1 m d = A m zero (A m one d)).
  generalize (inv_poly_cF_1 m d Hmap Hpoly Hexd).
@@ -1236,7 +1236,7 @@ apply invisible_not_visible in H3.
 cut (visible m (A m zero (A m one d)) p); [contradiction|idtac].
 apply H0; intros j Hj; generalize (H j); clear H H0.
 intro H; elim H; clear H; intro H; try assumption.
-assert (0 < (MF.Iter_upb m d)); [idtac|omega].
+assert (0 < (MF.Iter_upb m d)); [idtac|lia].
  apply MF.upb_pos; tauto.
 apply succ_exd_A; try assumption.
 unfold red_dart in H1; tauto.

@@ -198,7 +198,7 @@ Fixpoint nh (m:fmap) {struct m} : Z :=
 (* ========================== *)
 
 Lemma Zeven_ex : forall (n:Z),
-  Zeven n -> exists m:Z, n = m * 2.
+  Zeven n -> exists m:Z, (n = m * 2)%Z.
 Proof.
 intro n; exists (Z.div2 n).
 rewrite Zmult_comm.
@@ -206,13 +206,13 @@ apply Zeven_div2; auto.
 Qed.
 
 Lemma Zeven_2n2 : forall (n:Z),
-  Zeven n -> 2 * (n / 2) = n.
+  Zeven n -> (2 * (n / 2) = n)%Z.
 Proof.
 intros n H.
 elim (Zeven_ex n H); intros x H0.
 rewrite H0; rewrite (Z_div_mult x 2).
 rewrite Zmult_comm; trivial.
-omega.
+lia.
 Qed.
 
 Lemma Zeven_2n : forall (n:Z), Zeven (2 * n).
@@ -224,13 +224,13 @@ Qed.
 
 Lemma mynumbering1 :
   forall (m:fmap), inv_hmap m -> planar m ->
-  nv m + ne m + nf m - nd m = 2 * nc m.
+  (nv m + ne m + nf m - nd m = 2 * nc m)%Z.
 Proof.
 intros m Hmap H.
 generalize (my_planar_ec m).
 intros [h1 h2]; generalize (h1 H).
 intro h0; rewrite <- h0; ring_simplify.
-cut (2 * (ec m / 2) = ec m).
+cut (2 * (ec m / 2) = ec m)%Z.
 intro h; rewrite h; unfold ec; trivial.
 clear H h0 h1 h2.
 cut (Zeven (ec m)).
@@ -239,7 +239,7 @@ apply even_ec; assumption.
 Qed.
 
 Lemma mynumbering2 : forall (m:fmap),
-  nh m = nhbs m + nhbp m + nhrs m + nhrp m.
+  (nh m = nhbs m + nhbp m + nhrs m + nhrp m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -249,7 +249,7 @@ ring_simplify; (apply IHm || rewrite IHm; trivial).
 Qed.
 
 Lemma mynumbering3 : forall (m:fmap),
-  nd m = nn m + nb m + nr m + nh m.
+  (nd m = nn m + nb m + nr m + nh m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -259,7 +259,7 @@ intros hp hs; ring_simplify; apply IHm.
 Qed.
 
 Lemma mynumbering4a : forall (m:fmap),
-  nl0 m = nb m + nhbs m.
+  (nl0 m = nb m + nhbs m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -270,7 +270,7 @@ elim succ_dec; intro hs; ring_simplify; apply IHm.
 Qed.
 
 Lemma mynumbering4b : forall (m:fmap),
-  nl0 m = nr m + nhrp m.
+  (nl0 m = nr m + nhrp m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -281,7 +281,7 @@ elim pred_dec; intro hp; ring_simplify; apply IHm.
 Qed.
 
 Lemma mynumbering5a : forall (m:fmap),
-  nl1 m = nr m + nhrs m.
+  (nl1 m = nr m + nhrs m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -292,7 +292,7 @@ elim pred_dec; intro hp; ring_simplify; rewrite IHm; trivial.
 Qed.
 
 Lemma mynumbering5b : forall (m:fmap),
-  nl1 m = nb m + nhbp m.
+  (nl1 m = nb m + nhbp m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -303,7 +303,7 @@ elim succ_dec; intro hs; ring_simplify; rewrite IHm; trivial.
 Qed.
 
 Lemma mynumbering6 : forall (m:fmap),
-  ne m = nd m - nl0 m.
+  (ne m = nd m - nl0 m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -312,7 +312,7 @@ induction d; simpl; (apply IHm || ring_simplify; rewrite IHm; trivial).
 Qed.
 
 Lemma mynumbering7 : forall (m:fmap),
-  nv m = nd m - nl1 m.
+  (nv m = nd m - nl1 m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -323,7 +323,7 @@ Qed.
 (* ========================== *)
 
 Lemma eq_nhs_nhp : forall (m:fmap),
-  nhbs m + nhrs m = nhbp m + nhrp m.
+  (nhbs m + nhrs m = nhbp m + nhrp m)%Z.
 Proof.
 induction m.
 simpl; trivial.
@@ -337,9 +337,9 @@ Lemma Zeven_nh : forall (m:fmap), Zeven (nh m).
 Proof.
 intro m.
 rewrite mynumbering2.
-replace (nhbs m + nhbp m + nhrs m + nhrp m) with (nhbs m + nhrs m + nhbp m + nhrp m).
+replace (nhbs m + nhbp m + nhrs m + nhrp m)%Z with (nhbs m + nhrs m + nhbp m + nhrp m)%Z.
 rewrite eq_nhs_nhp.
-replace (nhbp m + nhrp m + nhbp m + nhrp m) with (2 * (nhbp m + nhrp m)).
+replace (nhbp m + nhrp m + nhbp m + nhrp m)%Z with (2 * (nhbp m + nhrp m))%Z.
 apply Zeven_2n.
 ring_simplify; trivial.
 ring_simplify; trivial.
@@ -2535,7 +2535,7 @@ Proof.
      inversion H4. generalize (H7 d). intro. tauto. intro. 
   assert (Z_of_nat (card s) = nn m). tauto. 
   rewrite inj_S. rewrite H6. 
-  split. omega. tauto. 
+  split. lia. tauto. 
  simpl. 
    generalize H. intro IM. 
    simpl in H. 
@@ -2579,25 +2579,25 @@ Proof.
        tauto. tauto. tauto.
        induction (DsL_aux m (s7init (fmap_to_set m))). simpl. intros. 
        simpl in H9,H12,H2,H5.
-         split. omega. 
-         split. omega. 
+         split. lia. 
+         split. lia. 
          split. rewrite exds_card_Ds. 
          rewrite inj_minus1. simpl. 
            assert (Z_of_nat (card s1) = nhbp m). tauto.
            rewrite H13. tauto. 
-           generalize (exds_card_pos s1 x H5). intro. omega. tauto. 
+           generalize (exds_card_pos s1 x H5). intro. lia. tauto. 
          split. rewrite exds_card_Ds. 
          rewrite inj_minus1. simpl. 
            assert (Z_of_nat (card s2) = nhrs m). tauto.
            rewrite H13. tauto. 
-           generalize (exds_card_pos s2 y H2). intro. omega. tauto. 
-          split. omega. 
+           generalize (exds_card_pos s2 y H2). intro. lia. tauto. 
+          split. lia. 
           split. elim exds_dec. intro. tauto. intro. 
             assert (Z_of_nat (card s4) = nb m). tauto. 
-            rewrite inj_S. rewrite H13. omega. 
+            rewrite inj_S. rewrite H13. lia. 
            elim exds_dec. intro. tauto. intro.  
             assert ( Z_of_nat (card s5) = nr m). tauto. 
-            rewrite inj_S. rewrite H13. omega. 
+            rewrite inj_S. rewrite H13. lia. 
 (* CASE 1.2: *)
       intros a a0.  
          generalize (inv_half_pred_one m x H0 H1 a0). 
@@ -2649,18 +2649,18 @@ Proof.
         simpl in H6,H7,H12,H14.
         split. rewrite exds_card_Ds. rewrite inj_minus1.
         assert (Z_of_nat (card s) = nn m). tauto. rewrite H15. 
-        simpl. omega. generalize (exds_card_pos s y H12). intros. omega. tauto. 
-        split. assert ( Z_of_nat (card s0) = nhbs m). tauto. rewrite H15. omega. 
+        simpl. lia. generalize (exds_card_pos s y H12). intros. lia. tauto. 
+        split. assert ( Z_of_nat (card s0) = nhbs m). tauto. rewrite H15. lia. 
         split. rewrite exds_card_Ds. rewrite inj_minus1. 
         assert (Z_of_nat (card s1) = nhbp m). tauto. rewrite H15. simpl. tauto. 
-        generalize (exds_card_pos s1 x H6). intros. omega. tauto. 
-        split. assert (Z_of_nat (card s2) = nhrs m). tauto. rewrite H15. omega. 
+        generalize (exds_card_pos s1 x H6). intros. lia. tauto. 
+        split. assert (Z_of_nat (card s2) = nhrs m). tauto. rewrite H15. lia. 
         split. elim exds_dec. tauto. intros. 
         assert (Z_of_nat (card s3) = nhrp m). tauto. 
-        rewrite inj_S. rewrite H15. omega. 
+        rewrite inj_S. rewrite H15. lia. 
         split. elim exds_dec. tauto. intro. rewrite inj_S.
-        assert (Z_of_nat (card s4) = nb m). tauto. rewrite H15. omega. 
-        assert (Z_of_nat (card s5) = nr m). tauto. rewrite H15. omega.
+        assert (Z_of_nat (card s4) = nb m). tauto. rewrite H15. lia. 
+        assert (Z_of_nat (card s5) = nr m). tauto. rewrite H15. lia.
  (* CASE 1.3 *)
    elim succ_dec. intros. 
      assert (exd m x). tauto. assert (exd m y). tauto. 
@@ -2727,14 +2727,14 @@ Proof.
     simpl in H13,H14,H15,H16,H17.
     decompose [and] H2. clear H2. 
     split. rewrite exds_card_Ds. rewrite inj_minus1. simpl. 
-       rewrite H18. omega. generalize (exds_card_pos s x H13). intros. omega. tauto. 
-    split. elim exds_dec. tauto. intros.  rewrite inj_S. rewrite H20. omega. 
-    split. rewrite H19; omega. 
+       rewrite H18. lia. generalize (exds_card_pos s x H13). intros. lia. tauto. 
+    split. elim exds_dec. tauto. intros.  rewrite inj_S. rewrite H20. lia. 
+    split. rewrite H19; lia. 
     split. rewrite exds_card_Ds. rewrite inj_minus1. simpl. 
-       rewrite H21. tauto. generalize (exds_card_pos s2 y H15). intros. omega. tauto.  
-    split. rewrite H22. omega.
-    split.  rewrite H23. omega.
-    elim exds_dec. tauto. intro. rewrite inj_S. rewrite H25. omega.
+       rewrite H21. tauto. generalize (exds_card_pos s2 y H15). intros. lia. tauto.  
+    split. rewrite H22. lia.
+    split.  rewrite H23. lia.
+    elim exds_dec. tauto. intro. rewrite inj_S. rewrite H25. lia.
 (* CASE 1.4: *)
     intros Sy Px. 
      assert (exd m x). tauto. assert (exd m y). tauto. 
@@ -2813,18 +2813,18 @@ Proof.
         apply (exds_card_pos (Ds s x) y). tauto. 
        generalize (exds_card_Ds (Ds s x) y H16). intros.
        generalize (exds_card_Ds s x H11). intros.
-       assert (1 <  card s)%nat. omega. 
+       assert (1 <  card s)%nat. lia. 
        rewrite H25,H26. rewrite inj_minus1. 
-         rewrite inj_minus1. simpl. rewrite H17. omega. 
-       omega. omega. 
+         rewrite inj_minus1. simpl. rewrite H17. lia. 
+       lia. lia. 
      split. elim exds_dec. tauto. intro. 
-        rewrite inj_S. rewrite H19. omega. 
-     split. rewrite H18. omega. 
-     split. rewrite H20. omega. 
+        rewrite inj_S. rewrite H19. lia. 
+     split. rewrite H18. lia. 
+     split. rewrite H20. lia. 
      split. elim exds_dec. tauto. intro. 
-        rewrite inj_S. rewrite H21. omega. 
-     split. rewrite H22. omega. 
-     omega. 
+        rewrite inj_S. rewrite H21. lia. 
+     split. rewrite H22. lia. 
+     lia. 
 (* CASE one : EN COURS *)
   intro. generalize (H2 H1). clear H2. 
 (* CASE 2.1: *)
@@ -2855,29 +2855,29 @@ Proof.
        tauto. tauto. tauto.
        induction (DsL_aux m (s7init (fmap_to_set m))). simpl. intros. 
        simpl in H9,H12,H2,H5.
-         split. omega. 
+         split. lia. 
          split. rewrite exds_card_Ds. 
            rewrite inj_minus1. simpl. 
            assert (Z_of_nat (card s0) = nhbs m). tauto. rewrite H13. 
-           omega.   
-           generalize (exds_card_pos s0 y H2). intro. omega. tauto. 
+           lia.   
+           generalize (exds_card_pos s0 y H2). intro. lia. tauto. 
          split. assert (Z_of_nat (card s1) = nhbp m). tauto.
-           rewrite H13. omega. 
+           rewrite H13. lia. 
         split. assert (Z_of_nat (card s2) = nhrs m). tauto.
-           rewrite H13. omega. 
+           rewrite H13. lia. 
         split. rewrite exds_card_Ds. 
          rewrite inj_minus1. simpl. 
            assert (Z_of_nat (card s3) = nhrp m). tauto.
            rewrite H13. tauto. 
-           generalize (exds_card_pos s3 x H5). intro. omega. tauto. 
+           generalize (exds_card_pos s3 x H5). intro. lia. tauto. 
         split. elim exds_dec. tauto. intro.  
            rewrite inj_S. 
            assert ( Z_of_nat (card s4) = nb m). tauto. 
-            rewrite H13. omega. 
+            rewrite H13. lia. 
         elim exds_dec. tauto. intro.  
            rewrite inj_S. 
            assert ( Z_of_nat (card s5) = nr m). tauto. 
-         rewrite H13. omega. 
+         rewrite H13. lia. 
 (* CASE 2.2: *)
       intros a a0.  
          generalize (inv_half_pred_zero m x H0 H1 a0). 
@@ -2906,15 +2906,15 @@ Proof.
         simpl in H6,H7,H12,H14.
         decompose [and] H5. clear H5. 
         split. rewrite exds_card_Ds. rewrite inj_minus1.
-        simpl. omega. generalize (exds_card_pos s y H12). intros. omega. tauto. 
-        split. rewrite H17. omega. 
-        split. elim exds_dec. tauto. intros.  rewrite inj_S. rewrite H16. omega. 
-        split. rewrite H18. omega. 
+        simpl. lia. generalize (exds_card_pos s y H12). intros. lia. tauto. 
+        split. rewrite H17. lia. 
+        split. elim exds_dec. tauto. intros.  rewrite inj_S. rewrite H16. lia. 
+        split. rewrite H18. lia. 
         split.  rewrite exds_card_Ds. rewrite inj_minus1. simpl.
-             rewrite H19; omega. 
-             generalize (exds_card_pos s3 x H6). intros. omega. tauto. 
-        split. rewrite H20. omega. 
-        elim exds_dec. tauto. intro. rewrite inj_S. rewrite H22. omega.  
+             rewrite H19; lia. 
+             generalize (exds_card_pos s3 x H6). intros. lia. tauto. 
+        split. rewrite H20. lia. 
+        elim exds_dec. tauto. intro. rewrite inj_S. rewrite H22. lia.  
  (* CASE 2.3 *)
    elim succ_dec. intros. 
      assert (exd m x). tauto. assert (exd m y). tauto. 
@@ -2942,17 +2942,17 @@ Proof.
     simpl in H13,H14,H10,H12.
     decompose [and] H2. clear H2. 
     split. rewrite exds_card_Ds. rewrite inj_minus1. simpl. 
-       rewrite H15. omega. generalize (exds_card_pos s x H10). intros. omega. tauto. 
+       rewrite H15. lia. generalize (exds_card_pos s x H10). intros. lia. tauto. 
     split. rewrite exds_card_Ds. rewrite inj_minus1. simpl. 
-       rewrite H17. omega. 
-       generalize (exds_card_pos s0 y H12). intros. omega. tauto.
-    split. rewrite H16. omega. 
+       rewrite H17. lia. 
+       generalize (exds_card_pos s0 y H12). intros. lia. tauto.
+    split. rewrite H16. lia. 
     split. elim exds_dec. tauto. intro. 
-       rewrite inj_S. rewrite H18. omega.
-    split. rewrite H19. omega. 
+       rewrite inj_S. rewrite H18. lia.
+    split. rewrite H19. lia. 
     split. elim exds_dec. tauto. intro. 
-       rewrite inj_S. rewrite H20. omega.
-    rewrite H22. omega.
+       rewrite inj_S. rewrite H20. lia.
+    rewrite H22. lia.
 (* CASE 2.4: *)
     intros Sy Px. 
      assert (exd m x). tauto. assert (exd m y). tauto. 
@@ -2986,27 +2986,27 @@ Proof.
         apply (exds_card_pos (Ds s x) y). tauto. 
        generalize (exds_card_Ds (Ds s x) y H14). intros.
        generalize (exds_card_Ds s x H9). intros.
-       assert (1 <  card s)%nat. omega. 
+       assert (1 <  card s)%nat. lia. 
        rewrite H23,H24. rewrite inj_minus1. 
-         rewrite inj_minus1. simpl. rewrite H15. omega. 
-       omega. omega. 
-     split. rewrite H17. omega.  
+         rewrite inj_minus1. simpl. rewrite H15. lia. 
+       lia. lia. 
+     split. rewrite H17. lia.  
      split. elim exds_dec. tauto. intro. 
-        rewrite inj_S. rewrite H16. omega. 
+        rewrite inj_S. rewrite H16. lia. 
      split. elim exds_dec. tauto. intro. 
-        rewrite inj_S. rewrite H18. omega. 
-     split. rewrite H19. omega. 
-     split. rewrite H20. omega. 
-     rewrite H22. omega. 
+        rewrite inj_S. rewrite H18. lia. 
+     split. rewrite H19. lia. 
+     split. rewrite H20. lia. 
+     rewrite H22. lia. 
 Qed.
 
 Theorem color_numbers_pos : forall m, inv_hmap m -> inv_half m ->
-   0 <= nn m /\  0 <= nhbs m /\ 0 <= nhbp m /\ 
-     0 <= nhrs m /\ 0 <= nhrp m /\  0 <= nb m /\ 0 <= nr m.
+   (0 <= nn m)%Z /\  (0 <= nhbs m)%Z /\ (0 <= nhbp m)%Z /\ 
+     (0 <= nhrs m)%Z /\ (0 <= nhrp m)%Z /\  (0 <= nb m)%Z /\ (0 <= nr m)%Z.
 Proof.
   intros. 
   generalize (card_number m H H0). 
-  elim (DsL m). intros. omega. 
+  elim (DsL m). intros. lia. 
 Qed.
 
 (*===============================================
@@ -3032,8 +3032,8 @@ induction s.
    apply IHs with x y. tauto. tauto. tauto. intro. 
  elim H. clear H. intro. rewrite H in H0. 
     assert (exds s y). tauto. 
-    generalize (exds_card_pos s y H2). intro. omega. 
- intro.   generalize (exds_card_pos s x H2). intro. omega.
+    generalize (exds_card_pos s y H2). intro. lia. 
+ intro.   generalize (exds_card_pos s x H2). intro. lia.
 Qed. 
 
 (* and Reciprocals: *)
@@ -3066,7 +3066,7 @@ induction s.
   elim H0. intros. 
   split with x. split with d. 
   split. tauto. split. tauto. intro. rewrite <-H2 in b. tauto. 
-intro. assert (2 <= card s)%nat. omega. 
+intro. assert (2 <= card s)%nat. lia. 
   generalize (IHs H0). intro. 
   elim H1. clear H1. intros.
   elim H1. clear H1. intros.
@@ -3240,7 +3240,7 @@ Theorem inv_poly_nhbs: forall m,
 
 Lemma nhbs_pos : forall m z,  
    inv_hmap m -> inv_half m -> half_blue_succ m z ->
-       nhbs m > 0.
+       (nhbs m > 0)%Z.
 Proof.
 induction m. simpl. unfold half_blue_succ. unfold succ,pred. simpl. tauto. 
 simpl. unfold half_blue_succ,prec_I. unfold succ,pred. simpl. intro z. 
@@ -3259,12 +3259,12 @@ induction d. simpl.
   fold (succ m zero z) (pred m zero z) (succ m one z) (pred m one z). 
   elim eq_dart_dec. intro. rewrite <-a. 
   elim eq_dart_dec. intro. symmetry in a0; tauto. 
-  elim pred_dec.  tauto. intros. decompose [and] H7. clear H7. omega.
+  elim pred_dec.  tauto. intros. decompose [and] H7. clear H7. lia.
    elim eq_dart_dec. intro. 
     assert (x<>nil). apply exd_not_nil with m. tauto. tauto. tauto. 
   elim pred_dec. fold (succ m zero z) (pred m zero z).
 fold (half_blue_succ m z). intros. 
-  generalize (IHm z H0 H5 H8). intro. omega. intros. omega.
+  generalize (IHm z H0 H5 H8). intro. lia. intros. lia.
 simpl.
   fold (succ m zero z) (pred m zero z) (succ m one z) (pred m one z). 
   elim eq_dart_dec. intro. rewrite <-a. 
@@ -3285,17 +3285,17 @@ generalize (exds_sethbs_DsL_aux m (fmap_to_set m) y H0 H5 H10). intro.
  intros. decompose [and] H13. clear H13. 
   assert (2 <= card s0)%nat.  
   apply (exds2_le_2_card s0 y z H12 H11 b).  
-  rewrite <-H16. omega. 
+  rewrite <-H16. lia. 
 intros.  fold  (succ m one z) (pred m one z) in H8. 
  fold (half_blue_succ m z) in H8.
- assert (nhbs m > 0). apply IHm with z. tauto. tauto. tauto. 
-omega.
+ assert (nhbs m > 0)%Z. apply IHm with z. tauto. tauto. tauto. 
+lia.
 Qed.
 
 (* OK! *)
 
 Lemma nhbs_pos_rcp : forall m,  
-   inv_hmap m -> inv_half m ->  nhbs m > 0 -> 
+   inv_hmap m -> inv_half m ->  (nhbs m > 0)%Z -> 
     exists z, half_blue_succ m z.
 Proof.
 induction m. simpl. intros. inversion H1.
@@ -3314,7 +3314,7 @@ generalize (color_numbers_pos m H0 H5).
   decompose [and] H7. clear H7. 
 induction d. simpl. 
  elim pred_dec. intros. 
-  assert (nhbs m > 0). omega. 
+  assert (nhbs m > 0)%Z. lia. 
   elim (IHm H0 H5 H14). intros z0 hz0. 
   generalize (L_not_succ_pred m zero x y H IH). simpl. intro.
   assert (half_blue_pred m x). unfold  half_blue_pred. tauto. 
@@ -3339,8 +3339,8 @@ generalize (exds_sethbs_DsL_aux_rcp m (fmap_to_set m)).
  fold (DsL m). 
   induction (DsL m). simpl. intros. 
   decompose [and] H17. clear H17. 
-  assert (2 <= nhbs m). omega. 
-  assert (2 <= card s0)%nat. omega. 
+  assert (2 <= nhbs m)%Z. lia. 
+  assert (2 <= card s0)%nat. lia. 
  generalize (le_2_card_exds2 s0 H24). intro. 
   elim H26. clear H26. intros.
   elim H26. clear H26. intros.
@@ -3366,7 +3366,7 @@ generalize (exds_sethbs_DsL_aux_rcp m (fmap_to_set m)).
      fold (half_blue_succ m x0). assumption. 
 intros. 
   fold (succ m one x) in H3. fold (pred m one y) in H4. 
-  assert (nhbs m > 0). omega. 
+  assert (nhbs m > 0)%Z. lia. 
   generalize (IHm H0 H5 H16). intro. 
   elim H17. intros. 
   split with x0. 
@@ -3379,13 +3379,13 @@ intros.
 Qed. 
 
 Theorem inv_poly_nhbs: forall m,  
-   inv_hmap m -> inv_poly m -> nhbs m = 0.
+   inv_hmap m -> inv_poly m -> (nhbs m = 0)%Z.
 Proof.
   intros. assert (inv_half m). apply inv_poly_half. tauto. 
   generalize (color_numbers_pos m H H1).
-  intros. assert ( 0 <= nhbs m). tauto. clear H2. 
+  intros. assert ( 0 <= nhbs m)%Z. tauto. clear H2. 
   elim (Z.eq_dec (nhbs m) 0). tauto. intro. 
-  assert (nhbs m > 0). omega. clear b H3. 
+  assert (nhbs m > 0)%Z. lia. clear b H3. 
   generalize (nhbs_pos_rcp m H H1 H2). intros.
   elim H3. intros z Hz. 
   unfold inv_poly in H0. 
@@ -3400,28 +3400,28 @@ Qed.
 (* ========================== *)
 
 Lemma inv_poly_nhbs_0 : forall (m:fmap),
-  inv_hmap m -> inv_poly m -> nhbs m = 0.
+  inv_hmap m -> inv_poly m -> (nhbs m = 0)%Z.
 Proof.
 apply inv_poly_nhbs.
 Qed.
 
 Lemma inv_poly_nhbp_0 : forall (m:fmap),
-  inv_hmap m -> inv_poly m -> nhbp m = 0.
+  inv_hmap m -> inv_poly m -> (nhbp m = 0)%Z.
 Proof.
 Admitted.
 
 Lemma inv_poly_nhrs_0 : forall (m:fmap),
-  inv_hmap m -> inv_poly m -> nhrs m = 0.
+  inv_hmap m -> inv_poly m -> (nhrs m = 0)%Z.
 Proof.
 Admitted.
 
 Lemma inv_poly_nhrp_0 : forall (m:fmap),
-  inv_hmap m -> inv_poly m -> nhrp m = 0.
+  inv_hmap m -> inv_poly m -> (nhrp m = 0)%Z.
 Proof.
 Admitted.
 
 Lemma inv_poly_nh_0 : forall (m:fmap),
-  inv_hmap m -> inv_poly m -> nh m = 0.
+  inv_hmap m -> inv_poly m -> (nh m = 0)%Z.
 Proof.
 intros m h1 h2.
 rewrite mynumbering2.
@@ -3434,7 +3434,7 @@ Qed.
 
 Theorem nc_nf : forall (m:fmap),
   inv_hmap m -> inv_poly m -> planar m ->
-  nc m = nn m + 1 -> nf m = nn m + 2.
+  (nc m = nn m + 1 -> nf m = nn m + 2)%Z.
 Proof.
 intros m h1 h2 h3 h.
 generalize (mynumbering1 m h1 h3).
@@ -3450,14 +3450,14 @@ rewrite inv_poly_nhbp_0 in H; try assumption.
 rewrite inv_poly_nhbs_0 in H; try assumption.
 ring_simplify in H.
 assert (nb m = nr m).
-assert (nb m + nhbs m = nr m + nhrp m).
+assert (nb m + nhbs m = nr m + nhrp m)%Z.
 rewrite <- mynumbering4a, <- mynumbering4b; trivial.
 rewrite inv_poly_nhbs_0, inv_poly_nhrp_0 in H0; try assumption.
 ring_simplify in H0.
 assumption.
 rewrite H0 in H.
 ring_simplify in H.
-assert (nf m = 2 * nn m + 2 - nn m).
+assert (nf m = 2 * nn m + 2 - nn m)%Z.
 rewrite <- H; ring.
 rewrite H1; ring.
 Qed.
@@ -3467,19 +3467,19 @@ Qed.
 (* ========================== *)
 
 
-Lemma nd_ge_0 : forall (m:fmap), nd m >= 0.
+Lemma nd_ge_0 : forall (m:fmap), (nd m >= 0)%Z.
 Proof.
 induction m.
 (* K1 : m = V *)
-simpl; omega.
+simpl; lia.
 (* K2 : m = I *)
-simpl; omega.
+simpl; lia.
 (* K3 : m = L *)
 simpl; assumption.
 Qed.
 
 Lemma ex_dart_nd_gt_0 : forall (m:fmap),
-  (exists d:dart, exd m d) -> nd m > 0.
+  (exists d:dart, exd m d) -> (nd m > 0)%Z.
 Proof.
 induction m.
 (* K1 : m = V *)
@@ -3489,7 +3489,7 @@ intro da; simpl; tauto.
 intro H; elim H; clear H.
 intros da Hda; simpl.
 generalize (nd_ge_0 m).
-intro H; omega.
+intro H; lia.
 (* K3 : m = L *)
 intro H; elim H; clear H.
 intros da Hda; simpl in *.
@@ -3497,12 +3497,12 @@ apply IHm; exists da; assumption.
 Qed.
 
 Lemma nd_gt_0_ex_dart : forall (m:fmap),
-  nd m > 0 -> (exists d:dart, exd m d).
+  (nd m > 0)%Z -> (exists d:dart, exd m d).
 Proof.
 induction m.
 (* K1 : m = V *)
 intro H; simpl in *.
-cut False; [tauto|omega].
+cut False; [tauto|lia].
 (* K2 : m = I *)
 intro H; simpl in *.
 exists d; left; trivial.
@@ -3514,15 +3514,15 @@ Qed.
 (* ========================== *)
 
 Lemma nd_ge_nn : forall (m:fmap),
-  inv_hmap m -> nd m >= nn m.
+  inv_hmap m -> (nd m >= nn m)%Z.
 Proof.
 induction m.
 (* K1 : m = V *)
-simpl; omega.
+simpl; lia.
 (* K2 : m = I *)
 simpl; unfold prec_I.
 intros [Hmap [Hmap1 Hmap2]].
-generalize (IHm Hmap); omega.
+generalize (IHm Hmap); lia.
 (* K3 : m = L *)
 induction d; simpl; unfold prec_L;
 intros [Hmap [Hmap1 [Hmap2 [Hmap3 [Hmap4 Hmap5]]]]];
@@ -3530,17 +3530,17 @@ generalize (IHm Hmap); clear IHm; intro IHm.
 elim succ_dec; intro hs.
 elim pred_dec; intro hp.
 ring_simplify; assumption.
-ring_simplify; omega.
+ring_simplify; lia.
 elim pred_dec; intro hp.
-ring_simplify; omega.
-ring_simplify; omega.
+ring_simplify; lia.
+ring_simplify; lia.
 elim succ_dec; intro hs.
 elim pred_dec; intro hp.
 ring_simplify; assumption.
-ring_simplify; omega.
+ring_simplify; lia.
 elim pred_dec; intro hp.
-ring_simplify; omega.
-ring_simplify; omega.
+ring_simplify; lia.
+ring_simplify; lia.
 Qed.
 
 (* ========================== *)
@@ -3648,7 +3648,7 @@ intros [Hmap [Hmap1 Hmap2]] H da Hda.
 elim Hda; clear Hda; intro Hda.
 subst d; generalize (not_exd_black m da t p Hmap Hmap2).
 unfold black_dart, succ, pred; simpl; trivial.
-assert (t0 : nd m = nn m); [omega|idtac].
+assert (t0 : nd m = nn m); [lia|idtac].
 generalize (IHm Hmap t0 da Hda); clear IHm t0.
 unfold black_dart, succ, pred; simpl; trivial.
 (* K3 : m = L *)
@@ -3660,39 +3660,39 @@ elim (pred_dec m one d0); intro H1.
 elim (succ_dec m one d1); intro H2.
 intros H da Hda.
 cut False; [tauto|idtac].
-assert (t0 : nd m = nn m); [omega|idtac].
+assert (t0 : nd m = nn m); [lia|idtac].
 generalize (IHm Hmap t0 d0 Hmap1); clear IHm t0.
 unfold black_dart, succ, pred; simpl.
 intros [h1 [h2 [h3 h4]]]; contradiction.
 intros H da Hda.
 cut False; [tauto|idtac].
-generalize (nd_ge_nn m Hmap); omega.
+generalize (nd_ge_nn m Hmap); lia.
 elim (succ_dec m one d1); intro H2.
 intros H da Hda.
 cut False; [tauto|idtac].
-generalize (nd_ge_nn m Hmap); omega.
+generalize (nd_ge_nn m Hmap); lia.
 intros H da Hda.
 cut False; [tauto|idtac].
-generalize (nd_ge_nn m Hmap); omega.
+generalize (nd_ge_nn m Hmap); lia.
 (* K32 : d = one *)
 elim (pred_dec m zero d0); intro H1.
 elim (succ_dec m zero d1); intro H2.
 intros H da Hda.
 cut False; [tauto|idtac].
-assert (t0 : nd m = nn m); [omega|idtac].
+assert (t0 : nd m = nn m); [lia|idtac].
 generalize (IHm Hmap t0 d0 Hmap1); clear IHm t0.
 unfold black_dart, succ, pred; simpl.
 intros [h1 [h2 [h3 h4]]]; contradiction.
 intros H da Hda.
 cut False; [tauto|idtac].
-generalize (nd_ge_nn m Hmap); omega.
+generalize (nd_ge_nn m Hmap); lia.
 elim (succ_dec m zero d1); intro H2.
 intros H da Hda.
 cut False; [tauto|idtac].
-generalize (nd_ge_nn m Hmap); omega.
+generalize (nd_ge_nn m Hmap); lia.
 intros H da Hda.
 cut False; [tauto|idtac].
-generalize (nd_ge_nn m Hmap); omega.
+generalize (nd_ge_nn m Hmap); lia.
 Qed.
 
 Lemma all_black_nd_eq_nn :
@@ -3705,8 +3705,8 @@ simpl; tauto.
 (* K2 : m = I *)
 simpl; unfold prec_I.
 intros [Hmap [Hmap1 Hmap2]] H.
-assert (H0 : nd m = nn m -> nd m + 1 = nn m + 1);
-[omega | apply H0; clear H0].
+assert (H0 : nd m = nn m -> (nd m + 1 = nn m + 1)%Z);
+[lia | apply H0; clear H0].
 apply IHm; clear IHm; try assumption.
 intros da Hda.
 apply or_intror with (d = da) (exd m da) in Hda.
@@ -3797,7 +3797,7 @@ Qed.
 Lemma nhbp_L0 :
   forall (m:fmap)(d0:dart)(d1:dart),
   inv_hmap (L m zero d0 d1) -> inv_poly (L m zero d0 d1) ->
-  nhbp (L m zero d0 d1) + 1 = nhbp m.
+  (nhbp (L m zero d0 d1) + 1 = nhbp m)%Z.
 Proof.
 intros m d0 d1 Hmap Hpoly; simpl.
 simpl in Hmap; unfold prec_L in Hmap.
@@ -3816,7 +3816,7 @@ Qed.
 Lemma nhrs_L0 :
   forall (m:fmap)(d0:dart)(d1:dart),
   inv_hmap (L m zero d0 d1) -> inv_poly (L m zero d0 d1) ->
-  nhrs (L m zero d0 d1) + 1 = nhrs m.
+  (nhrs (L m zero d0 d1) + 1 = nhrs m)%Z.
 Proof.
 intros m d0 d1 Hmap Hpoly; simpl.
 simpl in Hmap; unfold prec_L in Hmap.

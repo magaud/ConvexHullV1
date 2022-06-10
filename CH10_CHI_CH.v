@@ -17,16 +17,16 @@ Lemma inv_hmap_CH2 :
 Proof.
 intros d1 t1 p1 d2 t2 p2 max HA1 HB1 HB2 HC1 HC2.
 assert (HB3 : max+1 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
 assert (HB4 : max+2 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
-assert (HA2 : d1 <> max+1); [omega|idtac].
-assert (HA3 : d2 <> max+1); [omega|idtac].
-assert (HA4 : d1 <> max+2); [omega|idtac].
-assert (HA5 : d2 <> max+2); [omega|idtac].
-assert (HA6 : max+1 <> max+2); [omega|idtac].
+assert (HA2 : d1 <> max+1); [lia|idtac].
+assert (HA3 : d2 <> max+1); [lia|idtac].
+assert (HA4 : d1 <> max+2); [lia|idtac].
+assert (HA5 : d2 <> max+2); [lia|idtac].
+assert (HA6 : max+1 <> max+2); [lia|idtac].
 simpl; unfold prec_I, prec_L; simpl;
 repeat split; unfold succ, pred; simpl;
 elimeqdartdec; try intuition.
@@ -39,16 +39,16 @@ Lemma inv_poly_CH2 :
 Proof.
 intros d1 t1 p1 d2 t2 p2 max HA1 HB1 HB2 HC1 HC2.
 assert (HB3 : max+1 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
 assert (HB4 : max+2 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
-assert (HA2 : d1 <> max+1); [omega|idtac].
-assert (HA3 : d2 <> max+1); [omega|idtac].
-assert (HA4 : d1 <> max+2); [omega|idtac].
-assert (HA5 : d2 <> max+2); [omega|idtac].
-assert (HA6 : max+1 <> max+2); [omega|idtac].
+assert (HA2 : d1 <> max+1); [lia|idtac].
+assert (HA3 : d2 <> max+1); [lia|idtac].
+assert (HA4 : d1 <> max+2); [lia|idtac].
+assert (HA5 : d2 <> max+2); [lia|idtac].
+assert (HA6 : max+1 <> max+2); [lia|idtac].
 unfold inv_poly; simpl; intros d H.
 repeat (elim H; clear H; intro H; try subst d).
 (* max+2 *)
@@ -72,16 +72,16 @@ Lemma planar_CH2 :
 Proof.
 intros d1 t1 p1 d2 t2 p2 max HA1 HB1 HB2 HC1 HC2.
 assert (HB3 : max+1 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
 assert (HB4 : max+2 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
-assert (HA2 : d1 <> max+1); [omega|idtac].
-assert (HA3 : d2 <> max+1); [omega|idtac].
-assert (HA4 : d1 <> max+2); [omega|idtac].
-assert (HA5 : d2 <> max+2); [omega|idtac].
-assert (HA6 : max+1 <> max+2); [omega|idtac].
+assert (HA2 : d1 <> max+1); [lia|idtac].
+assert (HA3 : d2 <> max+1); [lia|idtac].
+assert (HA4 : d1 <> max+2); [lia|idtac].
+assert (HA5 : d2 <> max+2); [lia|idtac].
+assert (HA6 : max+1 <> max+2); [lia|idtac].
 unfold CH2.
 apply <- planarity_criterion_0.
 right; simpl; elimeqdartdec; unfold expf; split.
@@ -138,16 +138,16 @@ Lemma well_emb_CH2 :
 Proof.
 intros d1 t1 p1 d2 t2 p2 max HA1 HB1 HB2 HC1 HC2 HP1.
 assert (HB3 : max+1 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
 assert (HB4 : max+2 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
-assert (HA2 : d1 <> max+1); [omega|idtac].
-assert (HA3 : d2 <> max+1); [omega|idtac].
-assert (HA4 : d1 <> max+2); [omega|idtac].
-assert (HA5 : d2 <> max+2); [omega|idtac].
-assert (HA6 : max+1 <> max+2); [omega|idtac].
+assert (HA2 : d1 <> max+1); [lia|idtac].
+assert (HA3 : d2 <> max+1); [lia|idtac].
+assert (HA4 : d1 <> max+2); [lia|idtac].
+assert (HA5 : d2 <> max+2); [lia|idtac].
+assert (HA6 : max+1 <> max+2); [lia|idtac].
 assert (HP2 : p2 <> p1); [apply neq_sym_point; assumption | idtac].
 unfold well_emb; simpl; intros d H.
 repeat (elim H; clear H; intro H; try subst d; repeat split;
@@ -165,16 +165,16 @@ Lemma convex_CH2 :
 Proof.
 intros d1 t1 p1 d2 t2 p2 max HA1 HB1 HB2 HC1 HC2 HP1.
 assert (HB3 : max+1 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
 assert (HB4 : max+2 <> nil).
- apply neq_le_trans with max; [idtac|omega].
+ apply neq_le_trans with max; [idtac|lia].
  apply neq_le_trans with d1; try assumption.
-assert (HA2 : d1 <> max+1); [omega|idtac].
-assert (HA3 : d2 <> max+1); [omega|idtac].
-assert (HA4 : d1 <> max+2); [omega|idtac].
-assert (HA5 : d2 <> max+2); [omega|idtac].
-assert (HA6 : max+1 <> max+2); [omega|idtac].
+assert (HA2 : d1 <> max+1); [lia|idtac].
+assert (HA3 : d2 <> max+1); [lia|idtac].
+assert (HA4 : d1 <> max+2); [lia|idtac].
+assert (HA5 : d2 <> max+2); [lia|idtac].
+assert (HA6 : max+1 <> max+2); [lia|idtac].
 unfold convex; simpl; intros d H.
 repeat (elim H; clear H; intro H; try subst d; unfold blue_dart, succ, pred; simpl).
  elimeqdartdec; try tauto.
@@ -316,7 +316,7 @@ assert (Hp4 : forall (da:dart), exd m1 da -> fpoint m1 da <> p).
  apply Hw1; left; trivial.
  generalize (Hw5 max (le_refl max)); intuition.
  (* Hw0 *)
- intros d0 Hd0; apply Hw0; omega.
+ intros d0 Hd0; apply Hw0; lia.
  (* Hw1 *)
  intros d0 Hd0; apply not_exd_CHID.
   apply Hw1; right; assumption.
@@ -324,12 +324,12 @@ assert (Hp4 : forall (da:dart), exd m1 da -> fpoint m1 da <> p).
   generalize (Hw2 d0); intuition.
  (* Hw5 *)
  intros d0 Hd0; split.
-  assert (H : max <= d0); [omega|idtac].
+  assert (H : max <= d0); [lia|idtac].
   generalize (Hw5 d0 H); intuition.
-  apply not_exd_CHID; try omega.
-  assert (H : max <= d0); [omega|idtac].
+  apply not_exd_CHID; try lia.
+  assert (H : max <= d0); [lia|idtac].
   generalize (Hw5 d0 H); intuition.
-  assert (H : max <= d0); [omega|idtac].
+  assert (H : max <= d0); [lia|idtac].
   generalize (Hw5 d0 H); intuition.
  (* Hp1 *)
  intros da db Hda Hdb.
@@ -635,38 +635,38 @@ apply and_not_not_or; split; assumption.
    apply neq_sym_point; assumption.
 (* Hw0 *)
 intros da Hda;
-apply neq_le_trans with d; [assumption|omega].
+apply neq_le_trans with d; [assumption|lia].
 (* Hw1 *)
 intros da Hda; simpl.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 apply and_not_not_or; split; try tauto.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 (* Hw5 *)
 intros da Hda; split; simpl.
-apply gt_max_dart_not_exd; omega.
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|tauto].
+apply gt_max_dart_not_exd; lia.
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|tauto].
 (* Hp1 *)
 intros da db Hda Hdb; simpl in *.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elim eq_dart_dec; intro Heq3; [intuition|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 (* Hp2 *)
@@ -702,7 +702,7 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -720,8 +720,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp2; assumption.
@@ -739,8 +739,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -756,7 +756,7 @@ elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec; tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -766,12 +766,12 @@ apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp3; assumption.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -782,7 +782,7 @@ apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -792,12 +792,12 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|tauto].
+elim eq_dart_dec; intro Heq; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -807,19 +807,19 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -829,14 +829,14 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -847,8 +847,8 @@ auto with myorientation.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -858,15 +858,15 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -888,47 +888,47 @@ simpl; unfold prec_I; simpl; repeat split; assumption.
 apply noalign_I with d t p; try assumption.
 simpl; unfold prec_I; simpl; repeat split; try assumption.
 apply and_not_not_or; split; assumption.
-  apply inv_hmap_CH2; try assumption; omega.
-  apply inv_poly_CH2; try assumption; omega.
-  apply planar_CH2; try assumption; omega.
-  apply well_emb_CH2; try assumption; try omega.
+  apply inv_hmap_CH2; try assumption; lia.
+  apply inv_poly_CH2; try assumption; lia.
+  apply planar_CH2; try assumption; lia.
+  apply well_emb_CH2; try assumption; try lia.
    apply neq_sym_point; assumption.
-  apply convex_CH2; try assumption; try omega.
+  apply convex_CH2; try assumption; try lia.
    apply neq_sym_point; assumption.
 (* Hw0 *)
 intros da Hda.
-apply neq_le_trans with d; [assumption|omega].
+apply neq_le_trans with d; [assumption|lia].
 (* Hw1 *)
 intros da Hda; simpl.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 apply and_not_not_or; split; try tauto.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 (* Hw5 *)
 intros da Hda; split; simpl.
-apply gt_max_dart_not_exd; omega.
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|tauto].
+apply gt_max_dart_not_exd; lia.
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|tauto].
 (* Hp1 *)
 intros da db Hda Hdb; simpl in *.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elim eq_dart_dec; intro Heq3; [intuition|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 (* Hp2 *)
@@ -964,7 +964,7 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -982,8 +982,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp2; assumption.
@@ -1001,8 +1001,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -1018,7 +1018,7 @@ elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec; tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1028,12 +1028,12 @@ apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp3; assumption.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1044,7 +1044,7 @@ apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1054,12 +1054,12 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|tauto].
+elim eq_dart_dec; intro Heq; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1069,19 +1069,19 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1091,14 +1091,14 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1109,8 +1109,8 @@ auto with myorientation.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1120,15 +1120,15 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1151,47 +1151,47 @@ simpl; unfold prec_I; simpl; repeat split; assumption.
 apply noalign_I with d t p; try assumption.
 simpl; unfold prec_I; simpl; repeat split; try assumption.
 apply and_not_not_or; split; assumption.
-  apply inv_hmap_CH2; try assumption; omega.
-  apply inv_poly_CH2; try assumption; omega.
-  apply planar_CH2; try assumption; omega.
-  apply well_emb_CH2; try assumption; try omega.
+  apply inv_hmap_CH2; try assumption; lia.
+  apply inv_poly_CH2; try assumption; lia.
+  apply planar_CH2; try assumption; lia.
+  apply well_emb_CH2; try assumption; try lia.
    apply neq_sym_point; assumption.
-  apply convex_CH2; try assumption; try omega.
+  apply convex_CH2; try assumption; try lia.
    apply neq_sym_point; assumption.
 (* Hw0 *)
 intros da Hda.
-apply neq_le_trans with d; [assumption|omega].
+apply neq_le_trans with d; [assumption|lia].
 (* Hw1 *)
 intros da Hda; simpl.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 apply and_not_not_or; split; try tauto.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 (* Hw5 *)
 intros da Hda; split; simpl.
-apply gt_max_dart_not_exd; omega.
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|tauto].
+apply gt_max_dart_not_exd; lia.
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|tauto].
 (* Hp1 *)
 intros da db Hda Hdb; simpl in *.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elim eq_dart_dec; intro Heq3; [intuition|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 (* Hp2 *)
@@ -1227,7 +1227,7 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -1245,8 +1245,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp2; assumption.
@@ -1264,8 +1264,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -1281,7 +1281,7 @@ elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec; tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1291,12 +1291,12 @@ apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp3; assumption.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1307,7 +1307,7 @@ apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1317,12 +1317,12 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|tauto].
+elim eq_dart_dec; intro Heq; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1332,19 +1332,19 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1354,14 +1354,14 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1372,8 +1372,8 @@ auto with myorientation.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1383,15 +1383,15 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1413,47 +1413,47 @@ simpl; unfold prec_I; simpl; repeat split; assumption.
 apply noalign_I with d t p; try assumption.
 simpl; unfold prec_I; simpl; repeat split; try assumption.
 apply and_not_not_or; split; assumption.
-  apply inv_hmap_CH2; try assumption; omega.
-  apply inv_poly_CH2; try assumption; omega.
-  apply planar_CH2; try assumption; omega.
-  apply well_emb_CH2; try assumption; try omega.
+  apply inv_hmap_CH2; try assumption; lia.
+  apply inv_poly_CH2; try assumption; lia.
+  apply planar_CH2; try assumption; lia.
+  apply well_emb_CH2; try assumption; try lia.
    apply neq_sym_point; assumption.
-  apply convex_CH2; try assumption; try omega.
+  apply convex_CH2; try assumption; try lia.
    apply neq_sym_point; assumption.
 (* Hw0 *)
 intros da Hda.
-apply neq_le_trans with d; [assumption|omega].
+apply neq_le_trans with d; [assumption|lia].
 (* Hw1 *)
 intros da Hda; simpl.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
-apply exd_le_max_dart in Hda; omega.
+apply exd_le_max_dart in Hda; lia.
 apply and_not_not_or; split.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 apply and_not_not_or; split; try tauto.
 apply neq_sym; apply exd_not_exd_neq with m; assumption.
 (* Hw5 *)
 intros da Hda; split; simpl.
-apply gt_max_dart_not_exd; omega.
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|idtac].
-apply and_not_not_or; split; [omega|tauto].
+apply gt_max_dart_not_exd; lia.
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|idtac].
+apply and_not_not_or; split; [lia|tauto].
 (* Hp1 *)
 intros da db Hda Hdb; simpl in *.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp2; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
-elim eq_dart_dec; intro Heq1; [omega|idtac].
-elim eq_dart_dec; intro Heq2; [omega|idtac].
+elim eq_dart_dec; intro Heq1; [lia|idtac].
+elim eq_dart_dec; intro Heq2; [lia|idtac].
 elim eq_dart_dec; intro Heq3; [intuition|idtac].
 elimeqdartdec; apply neq_sym_point; apply Hp3; assumption.
 (* Hp2 *)
@@ -1489,7 +1489,7 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -1507,8 +1507,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp2; assumption.
@@ -1526,8 +1526,8 @@ elim (eq_dart_dec d0 da).
 elim (eq_dart_dec d0 db).
  intro Heq4; subst d0; contradiction.
 intros Heq1 Heq2 Heq3 Heq4.
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 intro H; apply H; try assumption.
 apply neq_sym_point; apply Hp3; assumption.
 apply neq_sym_point; apply Hp3; assumption.
@@ -1543,7 +1543,7 @@ elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec; tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1553,12 +1553,12 @@ apply neq_sym_point; apply Hp2; assumption.
 apply neq_sym_point; apply Hp3; assumption.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1569,7 +1569,7 @@ apply neq_sym_point; apply Hp3; assumption.
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|idtac].
+elim eq_dart_dec; intro Heq; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1579,12 +1579,12 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq; [omega|tauto].
+elim eq_dart_dec; intro Heq; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1594,19 +1594,19 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdb; clear Hdb; intro Hdb; try subst db.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1616,14 +1616,14 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc; try tauto.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1634,8 +1634,8 @@ auto with myorientation.
 elim Hdb; clear Hdb; intro Hdb; try subst db; try tauto.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].
@@ -1645,15 +1645,15 @@ generalize (neq_sym_point p (fpoint m da) (Hp2 da Hda)).
 auto with myorientation.
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|tauto].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|tauto].
 elim Hdc; clear Hdc; intro Hdc; try subst dc.
 elimeqdartdec.
-elim eq_dart_dec; intro Heq3; [omega|idtac].
-elim eq_dart_dec; intro Heq4; [omega|idtac].
-elim eq_dart_dec; intro Heq5; [omega|idtac].
-elim eq_dart_dec; intro Heq6; [omega|idtac].
+elim eq_dart_dec; intro Heq3; [lia|idtac].
+elim eq_dart_dec; intro Heq4; [lia|idtac].
+elim eq_dart_dec; intro Heq5; [lia|idtac].
+elim eq_dart_dec; intro Heq6; [lia|idtac].
 assert (H01 : exd (I (I m d0 t0 p0) d t p) da); [simpl; tauto | idtac].
 assert (H02 : exd (I (I m d0 t0 p0) d t p) d); [simpl; tauto | idtac].
 assert (H03 : exd (I (I m d0 t0 p0) d t p) d0); [simpl; tauto | idtac].

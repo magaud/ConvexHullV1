@@ -9,7 +9,7 @@
 
       PART 1: BASES, FMAPS, HMAPS, CLOSURES OF A, A_1
 
-COMPLETE: OK! 
+COMPLETE: OK!  
 ============================================================
 ==========================================================*)
 (*
@@ -20,7 +20,7 @@ coqtop -opt
 Require Import Arith.
 Require Import EqNat.
 Require Export Reals.
-Require Export Omega.
+Require Export Lia.
 
 Open Scope R_scope.
 
@@ -35,7 +35,7 @@ Inductive dim:Set := zero : dim | one : dim.
 Lemma eq_dim_dec :
  forall i k : dim, {i=k}+{~i=k}.
 Proof.
-double induction i k.
+induction i ; induction k.
  tauto.
  right. discriminate.
  right. discriminate.
@@ -70,7 +70,7 @@ Definition eq_point(p q :point):=
 
 (* Decidability point equality: *)
 
-(* Remainder, but DANGEREOUS ! :
+(* Reminder, but DANGEREOUS ! :
 Check Req_dec.
 Req_dec
      : forall r1 r2 : R, r1 = r2 \/ r1 <> r2.
@@ -1692,6 +1692,7 @@ simpl in |- *.
   intros k x y.
   elim (eq_dart_dec d x).
   intuition.
+  subst x; subst y; trivial.
   rewrite H4 in H5.
     generalize (not_exd_A_nil m k x H3 H5).
     rewrite H2 in |- *.
@@ -1701,7 +1702,8 @@ simpl in |- *.
    apply not_exd_nil.
       tauto.
    tauto.
- rewrite a in H5.
+   subst x; subst y; trivial.
+   rewrite a in H5.
     tauto.
  intuition.
   rewrite <- H0 in H2.
@@ -1781,6 +1783,7 @@ simpl in |- *.
   intros k x y.
   elim (eq_dart_dec d x).
   intuition.
+  subst x; subst y; trivial.
   rewrite <- H4 in H2.
     assert (A_1 m k d = nil).
    apply not_exd_A_1_nil.
@@ -1792,7 +1795,8 @@ simpl in |- *.
    apply not_exd_nil.
       tauto.
    tauto.
- rewrite a in H5.
+   subst x; subst y; trivial.
+   rewrite a in H5.
     tauto.
  intuition.
   rewrite <- H0 in H2.

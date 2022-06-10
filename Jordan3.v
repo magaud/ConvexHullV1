@@ -676,7 +676,7 @@ induction m.
     apply Zeven_Sn.
     apply Zodd_Sn.
     tauto.
-  omega.
+  lia.
  induction d.
   simpl in |- *.
     unfold prec_L in |- *.
@@ -685,7 +685,7 @@ induction m.
      assert
       (nv m + ne m + nf m - nd m = 
    nv m + (ne m - 1) + (nf m + 1) - nd m).
-    omega.
+    lia.
     rewrite <- H.
       tauto.
    intro.
@@ -693,7 +693,7 @@ induction m.
       (nv m + (ne m - 1) + (nf m + -1) - nd m =
        Z.pred (Z.pred (nv m + ne m + nf m - nd m))).
     unfold Z.pred in |- *.
-      omega.
+      lia.
     rewrite H.
       intros.
       apply Zeven_pred.
@@ -711,7 +711,7 @@ induction m.
       assert
        (nv m - 1 + ne m + (nf m + 1) - nd m = 
          nv m + ne m + nf m - nd m).
-     omega.
+     lia.
      rewrite H0.
        tauto.
     intro.
@@ -719,7 +719,7 @@ induction m.
        (nv m - 1 + ne m + (nf m + -1) - nd m =
         Z.pred (Z.pred (nv m + ne m + nf m - nd m))).
      unfold Z.pred in |- *.
-       omega.
+       lia.
      rewrite H0.
        apply Zeven_pred.
        apply Zodd_pred.
@@ -736,7 +736,7 @@ rename H into Invm.
 unfold ec.
 induction m.
  simpl in |- *.
-   omega.
+   lia.
  unfold nc in |- *.
    fold nc in |- *.
    unfold nv in |- *; fold nv in |- *.
@@ -747,7 +747,7 @@ induction m.
    fold inv_hmap in Invm.
    assert (2 * nc m >= nv m + ne m + nf m - nd m).
   tauto.
-  omega.
+  lia.
  unfold inv_hmap in Invm; fold inv_hmap in Invm.
    induction d.
   unfold nc in |- *; fold nc in |- *.
@@ -761,7 +761,7 @@ induction m.
     intro.
       assert (2 * nc m >= nv m + ne m + nf m - nd m).
      tauto.
-     omega.
+     lia.
     intro.
       assert (eqc m (cA_1 m one d0) d1).
      apply expf_eqc.
@@ -778,11 +778,11 @@ induction m.
     intro.
       assert (2 * nc m >= nv m + ne m + nf m - nd m).
      tauto.
-     omega.
+     lia.
     intro.
       assert (2 * nc m >= nv m + ne m + nf m - nd m).
      tauto.
-     omega.
+     lia.
   assert (2 * nc m >= nv m + ne m + nf m - nd m).
    tauto.
    clear IHm.
@@ -797,9 +797,9 @@ induction m.
     intro.
       elim (expf_dec m d0 (cA m zero d1)).
      intro.
-       omega.
+       lia.
      intro.
-       omega.
+       lia.
     elim (expf_dec m d0 (cA m zero d1)).
      intros.
        assert (eqc m d0 (cA m zero d1)).
@@ -814,7 +814,7 @@ induction m.
        tauto.
      intro.
        intro.
-       omega.
+       lia.
 Qed.
 
 Definition genus(m:fmap):= (nc m) - (ec m)/2.
@@ -834,18 +834,18 @@ intros a b.
 intros.
 cut (a >= b / 2).
 intro.
-   omega.
+   lia.
  assert (b = 2 * Z.div2 b).
   apply Zeven_div2.
     tauto.
   rewrite H2 in H1.
     assert (a >= Z.div2 b).
-   omega.
+   lia.
    rewrite H2.
  rewrite Zmult_comm.
      assert (Z.div2 b * 2 / 2 = Z.div2 b).
   apply Z_div_mult.
-      omega.
+      lia.
     rewrite H4.
       tauto.
 Qed.
@@ -861,7 +861,7 @@ Proof.
 unfold planar in |- *.
 unfold genus in |- *.
 intros.
-omega.
+lia.
 Qed.
 
 (* ==========================================================
@@ -898,11 +898,11 @@ intros.
 assert
  (nv m + 1 + (ne m + 1) + (nf m + 1) - (nd m + 1) =
   nv m + ne m + nf m - nd m + 1 * 2).
- omega.
+ lia.
  rewrite H2.
    rewrite Z_div_plus.
-  omega.
-  omega.
+  lia.
+  lia.
 Qed.
 
 Lemma expf_planar_0: forall (m:fmap)(x y:dart),
@@ -924,9 +924,9 @@ elim (expf_dec m (cA_1 m one x) y).
     assert
      (nv m + (ne m - 1) + (nf m + 1) - nd m 
         = nv m + ne m + nf m - nd m).
-   omega.
+   lia.
    rewrite H3.
-     omega.
+     lia.
   intro.
     elim b.
     eapply eqc_cA_1_eqc.
@@ -959,9 +959,9 @@ intros m x y Inv E Pr Exp.
      assert
       (nv m - 1 + ne m + (nf m + 1) - nd m 
           = nv m + ne m + nf m - nd m).
-    omega.
+    lia.
     rewrite H.
-      omega.
+      lia.
    tauto.
   intro.
     elim b.
@@ -1005,12 +1005,12 @@ induction k.
    assert
     (nv m + (ne m - 1) + (nf m + -1) - nd m =
      nv m + ne m + nf m - nd m + -1 * 2).
-   omega.
+   lia.
  rewrite H3 in |- *.
    clear H3.
    rewrite Z_div_plus in |- *.
-   omega.
-  omega.
+   lia.
+  lia.
   simpl in |- *.
   elim (eqc_dec m x y).
   tauto.
@@ -1029,12 +1029,12 @@ intro.
   assert
    (nv m - 1 + ne m + (nf m + -1) - nd m =
      nv m + ne m + nf m - nd m + -1 * 2).
-  omega.
+  lia.
 rewrite H3 in |- *.
   clear H3.
   rewrite Z_div_plus in |- *.
-  omega.
- omega.
+  lia.
+ lia.
 Qed.
 
 (* Definition of "Planarly formed" hypermap: *)
@@ -1139,9 +1139,9 @@ elim (expf_dec m (cA_1 m one x) y).
     assert
      (nv m + (ne m - 1) + (nf m + 1) - nd m 
          = nv m + ne m + nf m - nd m).
-   omega.
+   lia.
    rewrite <- H1.
-     omega.
+     lia.
   intro.
     elim b.
     eapply eqc_cA_1_eqc.
@@ -1173,9 +1173,9 @@ intros m x y Pr Inv.
      assert
       (nv m - 1 + ne m + (nf m + 1) - nd m 
         = nv m + ne m + nf m - nd m).
-    omega.
+    lia.
     rewrite <- H1.
-      omega.
+      lia.
    intros.
      elim b.
      eapply eqc_cA_eqc.
@@ -1250,19 +1250,19 @@ unfold prec_L in Pr.
      assert
       (nv m + (ne m - 1) + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m - 2).
-    omega.
+    lia.
     rewrite H0 in H.
       generalize E H.
       generalize (nv m + ne m + nf m - nd m).
       intros.
       assert (z + -1 * 2 = z - 2).
-     omega.
+     lia.
      rewrite <- H2 in H1.
        rewrite Z_div_plus in H1.
       absurd (nc m - z / 2 = 0).
-       omega.
+       lia.
        tauto.
-      omega.
+      lia.
    tauto.
 Qed.
 
@@ -1286,7 +1286,7 @@ unfold prec_L in Pr.
      assert
       (nv m - 1 + ne m + (nf m + -1) - nd m 
        = nv m + ne m + nf m - nd m - 2).
-    omega.
+    lia.
     rewrite H0 in H.
       generalize E H.
       generalize (nv m + ne m + nf m - nd m).
@@ -1295,13 +1295,13 @@ unfold prec_L in Pr.
      apply Z_div_plus.
        auto with zarith.
      assert (z + -1 * 2 = z - 2).
-      omega.
+      lia.
       rewrite H3 in H2.
         assert (z / 2 = (z - 2) / 2).
-       omega.
+       lia.
        rewrite <- H4 in H2.
          absurd (z / 2 = z / 2 + -1).
-        omega.
+        lia.
         tauto.
    tauto.
 Qed.
@@ -1334,14 +1334,14 @@ unfold prec_L in Pr.
      assert
       (nv m + (ne m - 1) + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m + -1 * 2).
-    omega.
+    lia.
     rewrite H0.
       rewrite Z_div_plus.
      generalize E.
        generalize (nv m + ne m + nf m - nd m).
        intros.
-       omega.
-     omega.
+       lia.
+     lia.
 Qed.
 
 Lemma not_eqc_planar_1:forall (m:fmap)(x y:dart),
@@ -1370,14 +1370,14 @@ unfold prec_L in Pr.
      assert
       (nv m - 1 + ne m + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m + -1 * 2).
-    omega.
+    lia.
     rewrite H0.
       rewrite Z_div_plus.
      generalize E.
        generalize (nv m + ne m + nf m - nd m).
        intros.
-       omega.
-     omega.
+       lia.
+     lia.
 Qed.
 
 (* FINALLY: FULL PLANARITY CRITERION: *)
@@ -1454,9 +1454,9 @@ intros m x y Inv Pr.
      assert
       (nv m + (ne m - 1) + (nf m + 1) - nd m 
          = nv m + ne m + nf m - nd m).
-    omega.
+    lia.
     rewrite H.
-      omega.
+      lia.
    intros.
      elim b.
      eapply eqc_cA_1_eqc.
@@ -1471,24 +1471,24 @@ intros m x y Inv Pr.
      assert
       (nv m + (ne m - 1) + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m + -1 * 2).
-    omega.
+    lia.
     rewrite H.
       rewrite Z_div_plus.
      generalize (nv m + ne m + nf m - nd m).
        intros.
-       omega.
-     omega.
+       lia.
+     lia.
    intros.
      assert
       (nv m + (ne m - 1) + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m + -1 * 2).
-    omega.
+    lia.
     rewrite H.
       rewrite Z_div_plus.
      generalize (nv m + ne m + nf m - nd m).
        intros.
-       omega.
-     omega.
+       lia.
+     lia.
 Qed.
 
 Lemma incr_genus_1:forall(m:fmap)(x y:dart),
@@ -1506,9 +1506,9 @@ intros m x y Inv Pr.
      assert
       (nv m - 1 + ne m + (nf m + 1) - nd m 
          = nv m + ne m + nf m - nd m).
-    omega.
+    lia.
     rewrite H.
-      omega.
+      lia.
    intros.
      elim b.
      eapply eqc_cA_eqc.
@@ -1524,20 +1524,20 @@ intros m x y Inv Pr.
      assert
       (nv m - 1 + ne m + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m + -1 * 2).
-    omega.
+    lia.
     rewrite H.
       rewrite Z_div_plus.
-     omega.
-     omega.
+     lia.
+     lia.
    intro.
      assert
       (nv m - 1 + ne m + (nf m + -1) - nd m =
        nv m + ne m + nf m - nd m + -1 * 2).
-    omega.
+    lia.
     rewrite H.
       rewrite Z_div_plus.
-     omega.
-     omega.
+     lia.
+     lia.
 Qed.
 
 (* FINALLY: *)
@@ -1562,7 +1562,7 @@ assert (genus m <= genus (L m k x y)).
   tauto.
   tauto.
  generalize (genus_corollary m H).
-   omega.
+   lia.
 Qed.
 
 Theorem planarity_crit_0: forall (m:fmap)(x y:dart),
@@ -1619,11 +1619,11 @@ intros.
 assert
  (nv m + 1 + (ne m + 1) + (nf m + 1) - (nd m + 1) =
   nv m + ne m + nf m - nd m + 1 * 2).
-  omega.
+  lia.
 rewrite H0 in |- *.
   rewrite Z_div_plus in |- *.
-  omega.
- omega.
+  lia.
+ lia.
 Qed.
 
 (* Necessary condition for a planar formation: *)
@@ -1663,7 +1663,7 @@ intros.
 apply planar_plf.
   tauto.
 unfold genus in |- *.
-   omega.
+   lia.
 Qed.
 
 (* CHARACTERIZATION OF THE PLANAR POLYHEDRA: *)
